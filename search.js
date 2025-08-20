@@ -1,3 +1,8 @@
+const proxyUrl = "https://cors-anywhere.herokuapp.com/";
+const apiUrl = "https://osintpromax-2andkey-sijbsineons.onrender.com/?query=" + encodeURIComponent(query);
+const fetchUrl = proxyUrl + apiUrl;
+
+const response = await fetch(fetchUrl);
 const API_BASE = "https://osintpromax-2andkey-sijbsineons.onrender.com/?query=";
 const form = document.getElementById('search-form');
 const queryInput = document.getElementById('query');
