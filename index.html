@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>OSINT API Search</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🔍 OSINT Info Finder</h1>
+      <p class="subtitle">Check phone, name, or email details instantly.</p>
+    </header>
+    <main>
+      <form id="search-form">
+        <input type="text" id="query" placeholder="Enter phone, name, or email" autocomplete="off" required />
+        <button type="submit" id="search-btn">Search</button>
+      </form>
+      <section id="status"></section>
+      <section id="results"></section>
+    </main>
+    <footer>
+      <span>Made for Telegram OSINT Bot | Powered by OSINT API</span>
+    </footer>
+  </div>
+  <script src="search.js"></script>
+</body>
+</html>
