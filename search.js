@@ -1,15 +1,14 @@
-const proxyUrl = "https://cors-anywhere.herokuapp.com/";
-const apiUrl = "https://osintpromax-2andkey-sijbsineons.onrender.com/?query=" + encodeURIComponent(query);
-const fetchUrl = proxyUrl + apiUrl;
+// search.js
 
-const response = await fetch(fetchUrl);
 const API_BASE = "https://osintpromax-2andkey-sijbsineons.onrender.com/?query=";
+const proxyUrl = "https://webapp9.onrender.com//";
+
 const form = document.getElementById('search-form');
 const queryInput = document.getElementById('query');
 const statusDiv = document.getElementById('status');
 const resultsDiv = document.getElementById('results');
 
-// Helper for rendering records
+// Helper for rendering fields
 function makeField(label, value) {
   return `<div class="detail"><span class="label">${label}</span> <span class="value">${value}</span></div>`;
 }
@@ -23,8 +22,10 @@ form.addEventListener('submit', async function(e) {
   resultsDiv.innerHTML = '';
 
   try {
-    const url = API_BASE + encodeURIComponent(q);
-    const response = await fetch(url);
+    const apiUrl = API_BASE + encodeURIComponent(q);
+    const fetchUrl = proxyUrl + apiUrl;
+
+    const response = await fetch(fetchUrl);
     const data = await response.json();
 
     if (!data.List || Object.keys(data.List).length === 0) {
@@ -38,7 +39,7 @@ form.addEventListener('submit', async function(e) {
     for (const [dbName, dbObj] of Object.entries(data.List)) {
       html += `<div class="result-section"><h3>${dbName}</h3>`;
       if (dbObj.Data && dbObj.Data.length > 0) {
-        dbObj.Data.forEach((record, i) => {
+        dbObj.Data.forEach((record) => {
           html += `<div class="result-card">`;
           for (const [k, v] of Object.entries(record)) {
             html += makeField(k, v);
@@ -52,6 +53,7 @@ form.addEventListener('submit', async function(e) {
     }
     resultsDiv.innerHTML = html;
   } catch (err) {
+    console.error("Fetch error:", err);
     statusDiv.textContent = "Error fetching data or API unavailable.";
     resultsDiv.innerHTML = "";
   }
